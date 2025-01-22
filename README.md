@@ -1,1 +1,2 @@
-Should be a more accurate prediction than the built in clash predictor in Limbus Company.
+#Limbus Company clash predictor
+Made this mostly for myself because the clash predictor in game is quite bad.
