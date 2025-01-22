@@ -1,4 +1,0 @@
-Field to enter info
-split up attack into values at certain probabilities and compare them
-Output percent
-Incorporate multiple coins
