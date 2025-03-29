@@ -1,19 +1,12 @@
 import { useState } from 'react'
 import { subtract, multiply, pow, identity, index, matrix } from "mathjs";
 
-/* 
-
-*/
-
 const App = () => {
-
-  
 
   const [playerBaseValue, setPlayerBaseValue] = useState(6)
   const [playerCoinValue, setPlayerCoinValue] = useState(4)
   const [playerSanity, setPlayerSanity] = useState(0)
   const [playerCoins, setPlayerCoins] = useState(2)
-  
   
   const [enemyBaseValue, setEnemyBaseValue] = useState(6)
   const [enemyCoinValue, setEnemyCoinValue] = useState(3)
@@ -75,7 +68,6 @@ const App = () => {
       
       const probability = nCk(coins, i) * Math.pow(coinHeadChance, heads) * Math.pow(coinTailsChance, tails)
 
-      
       percentages[i] = probability 
       
     }
@@ -94,7 +86,6 @@ const App = () => {
         coinValue[coinValueIndex] = tempObject
         coinValueIndex++
       }
-      
     }
   }
 
@@ -138,9 +129,6 @@ const App = () => {
 
   console.log('fsv', playerFinalSkillValuesList, enemyFinalSkillValuesList)
 
-  
-  
- 
 
   let singleClashWinPercentages = new Array(playerCoins * enemyCoins)
   let finalClashWinPercentage = 0
@@ -242,8 +230,6 @@ const App = () => {
           console.log('here')
           Rmatrix[targetRindex][1] += playerProbabilitiesList[playerProbabilitiesList.length-1][i] * enemyProbabilitiesList[enemyProbabilitiesList.length-1][j] 
         }
-        
-        
       }
     }
     
@@ -285,7 +271,6 @@ const App = () => {
     const testBmatrix = multiply(testNmatrix, testRmatrix)
     console.log('testB', testBmatrix)
 
-
     finalClashWinPercentage = Bmatrix._data[0][0]
   }
   
@@ -305,9 +290,7 @@ const App = () => {
       </form>
       <p>Clash win percentage: {finalClashWinPercentage * 100} %</p>
     </div>
-
   )
-
 }
 
 
