@@ -1,1 +1,7 @@
-Input the base value, coin value, number of coins and sanity for both clashing characters and you should get a more accurate prediction than the built in clash predictor.
+# Limbus Company clash predictor
+
+Made this mostly for myself because the clash predictor in game is quite bad.
+
+currently only runs locally
+
+Input base power, coin power, number of coins and sanity for the clashing characters to get the percentage chance for you to win the clash.
