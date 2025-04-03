@@ -73,23 +73,27 @@ const App = () => {
     }
     return percentages
   }
-
-  let coinValue = new Array(playerCoins + enemyCoins )
-  let coinValueIndex = 0
-  for (let i = 0; i < playerCoins + enemyCoins - 1; i++) {
-    const baseObject = {ECoins: enemyCoins, PCoins: playerCoins}
-    for (let j = 0; j < i+1; j++) {
-      //console.log('here', j, baseObject.PCoins, i)
-      let tempObject = { PCoins: baseObject.PCoins - j, ECoins: baseObject.ECoins - i + j} 
-      if(tempObject.PCoins >= 0 && tempObject.ECoins >= 0) {
-        console.log('test', tempObject.PCoins, tempObject.ECoins)
-        coinValue[coinValueIndex] = tempObject
-        coinValueIndex++
+  let finalClashWinPercentage = 0
+  if(playerCoins <= 0 || enemyCoins <= 0 || playerCoins >= 6 || enemyCoins >= 6){
+    finalClashWinPercentage = "not available"
+  }
+  else{
+    let coinValue = new Array(playerCoins + enemyCoins )
+    let coinValueIndex = 0
+    for (let i = 0; i < playerCoins + enemyCoins - 1; i++) {
+      const baseObject = {ECoins: enemyCoins, PCoins: playerCoins}
+      for (let j = 0; j < i+1; j++) {
+        //console.log('here', j, baseObject.PCoins, i)
+        let tempObject = { PCoins: baseObject.PCoins - j, ECoins: baseObject.ECoins - i + j} 
+        if(tempObject.PCoins >= 0 && tempObject.ECoins >= 0) {
+          console.log('test', tempObject.PCoins, tempObject.ECoins)
+          coinValue[coinValueIndex] = tempObject
+          coinValueIndex++
+        }
       }
     }
-  }
-
-  const possibleClashes = playerCoins * enemyCoins
+  
+    const possibleClashes = playerCoins * enemyCoins
   let Qmatrix = new Array(coinValue.length)
   for (let i = 0; i < Qmatrix.length; i++) {
     Qmatrix[i] = new Array(coinValue.length)
@@ -122,7 +126,6 @@ const App = () => {
 
   for (let j = 0; j < enemyCoins; j++) {
       
-      
     enemyFinalSkillValuesList[j] = calculateSkillValue(enemyBaseValue, enemyCoinValue, enemyCoins - j)
     enemyProbabilitiesList[j] = calculateProbabilites(enemySanity, enemyCoins - j)
   }
@@ -131,7 +134,7 @@ const App = () => {
 
 
   let singleClashWinPercentages = new Array(playerCoins * enemyCoins)
-  let finalClashWinPercentage = 0
+
   let ClashIndex = 0
 
   if (playerProbabilitiesList[0] && playerFinalSkillValuesList[0]) {
@@ -271,7 +274,10 @@ const App = () => {
     const testBmatrix = multiply(testNmatrix, testRmatrix)
     console.log('testB', testBmatrix)
 
-    finalClashWinPercentage = Bmatrix._data[0][0]
+    finalClashWinPercentage = Bmatrix._data[0][0] * 100
+  }
+
+  
   }
   
   return (
@@ -288,7 +294,7 @@ const App = () => {
         Enemy sanity <input value={enemySanity} onChange={(event) => {HandleInputChange(event, setEnemySanity)}}/> <br />
         Number of coins in enemy skill <input value={enemyCoins} onChange={(event) => {HandleInputChange(event, setEmemyCoins)}}/>
       </form>
-      <p>Clash win percentage: {finalClashWinPercentage * 100} %</p>
+      <p>Clash win percentage: {finalClashWinPercentage} %</p>
     </div>
   )
 }
