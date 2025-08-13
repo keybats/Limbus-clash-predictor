@@ -266,7 +266,7 @@ const App = () => {
 
       console.log('B', Bmatrix, Bmatrix._data)
 
-      //const testQmatrix = matrix([[0.13, 0.75, 0.13], [0, 0, 0], [0, 0, 0.25]])
+      
       let testQmatrix = new Array(3)
 
       testQmatrix[0] = [0.13, 0.75, 0.13]
